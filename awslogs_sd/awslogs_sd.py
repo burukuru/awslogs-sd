@@ -410,7 +410,7 @@ def create_log_streams(conf):
     for unit_conf in conf.units:
         group = unit_conf.log_group_name
         name = unit_conf.log_stream_name
-        resp = client.describe_log_streams(logGroupName=group)
+        resp = client.describe_log_streams(logGroupName=group, logStreamNamePrefix=name)
         matches = [g for g in resp['logStreams'] if g['logStreamName'] == name]
         if not matches:
             logger.info('Creating log stream: %s', name)
